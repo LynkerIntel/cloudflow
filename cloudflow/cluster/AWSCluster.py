@@ -247,6 +247,7 @@ class AWSCluster(Cluster):
         self.region = cfDict['region']
         self.nodeType = cfDict['nodeType']
         self.nodeCount = cfDict['nodeCount']
+        self.iamInstanceProfile = cfDict['instance_profile_name']
 
         # Hacky way to force unique Name tags
         print("running memorable_tags")
@@ -307,6 +308,7 @@ class AWSCluster(Cluster):
                 KeyName=self.key_name,
                 MinCount=self.nodeCount,
                 MaxCount=self.nodeCount,
+                IamInstanceProfile={ "Name":self.iamInstanceProfile },
                 TagSpecifications=[
                     {
                         'ResourceType': 'instance',
@@ -324,6 +326,7 @@ class AWSCluster(Cluster):
                 KeyName=self.key_name,
                 MinCount=self.nodeCount,
                 MaxCount=self.nodeCount,
+                IamInstanceProfile={ "Name":self.iamInstanceProfile },
                 TagSpecifications=[
                     {
                         'ResourceType': 'instance',
@@ -341,6 +344,7 @@ class AWSCluster(Cluster):
                 KeyName=self.key_name,
                 MinCount=self.nodeCount,
                 MaxCount=self.nodeCount,
+                IamInstanceProfile={ "Name":self.iamInstanceProfile },
                 TagSpecifications=[
                     {
                         'ResourceType': 'instance',
